@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>fed7e905-1bc3-4cf7-8083-6668cb06d0af</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Rhythms.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph24.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph28.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph33.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph40.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph56.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph92.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\Graph276.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Graphs\GraphBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\RangeEnabledObservableCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GraphInnerState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GraphState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\People.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Point.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DisposableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IGraphExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ViewModelBaseExtentions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGraph.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPerson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\MainWindowViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\ParentedItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presentation\PeopleViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+  </ItemGroup>
+</Project>

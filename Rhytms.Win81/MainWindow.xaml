@@ -1,0 +1,121 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Rhythms.Win"
+		xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
+		xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+		xmlns:c="clr-namespace:Rhythms.Shared.Xaml.Converters"
+		xmlns:b="clr-namespace:Rhythms.Shared.Xaml.Behaviors"
+		xmlns:controls="clr-namespace:Rhythms.Win.Controls"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		x:Class="Rhythms.Win.MainWindow"
+		mc:Ignorable="d"
+		Title="MainWindow"
+		Height="477"
+		Width="1019"
+		Background="#FFA7C3BF">
+
+	<Window.Resources>
+		<ResourceDictionary>
+			<c:RadioButtonScaleConverter x:Key="RadioButtonScaleCheckedConverter" />
+			<c:RadioButtonBoolConverter x:Key="RadioButtonMainCheckedConverter" />
+
+			<c:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+			<c:BoolToVisibilityConverter x:Key="InverseBoolToVisibility"
+										 IsInverse="True" />
+
+			<c:DateToPrettyStringConverter x:Key="DateToPrettyStringConverter"
+										   Format="MMMM d" />
+
+			<c:FloatToPrettyStringConverter x:Key="FloatToPrettyStringConverter"
+											Format="P" />
+
+			<c:PeopleTemplateSelector x:Key="peopleTemplateSelector"
+									  Single="{StaticResource singlePersonTemplate}"
+									  Double="{StaticResource doublePersonTemplate}" />
+		</ResourceDictionary>
+	</Window.Resources>
+	<Grid  DataContext="{Binding Main, Source={StaticResource Locator}}">
+		<xctk:BusyIndicator IsBusy="{Binding IsBusy}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="300" />
+				</Grid.ColumnDefinitions>
+				<Grid Grid.Column="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="130" />
+					</Grid.RowDefinitions>
+
+					<controls:GraphControl Margin="10"
+										   Grid.Row="0" />
+					<controls:GraphStateControl Grid.Row="1"
+												Margin="10" />
+
+				</Grid>
+				<syncfusion:TabControlExt Grid.Column="1"
+										  CloseButtonType="Hide">
+					<syncfusion:TabItemExt Header="Controls"
+										   IsNewTab="False">
+						<StackPanel Orientation="Vertical">
+							<GroupBox Header="Dates"
+									  ToolTip="Select birthdates to be graphed"
+									  Margin="10">
+								<StackPanel Orientation="Vertical">
+									<DatePicker Margin="10"
+												SelectedDate="{Binding FirstDate, Mode=TwoWay}" />
+									<DatePicker Margin="10"
+												SelectedDate="{Binding SecondDate, Mode=TwoWay}" />
+								</StackPanel>
+							</GroupBox>
+							<GroupBox Header="Scale"
+									  ToolTip="Select graph scale"
+									  Margin="10">
+								<StackPanel Orientation="Horizontal">
+									<RadioButton Content="30"
+												 GroupName="ScaleGroup"
+												 Margin="10,10,10,8"
+												 IsChecked="{Binding Scale, Converter={StaticResource RadioButtonScaleCheckedConverter}, ConverterParameter=30}"
+												 IsEnabled="{Binding IsMain}" />
+									<RadioButton Content="60"
+												 GroupName="ScaleGroup"
+												 Margin="10,10,10,8"
+												 IsChecked="{Binding Scale, Converter={StaticResource RadioButtonScaleCheckedConverter}, ConverterParameter=60}"
+												 IsEnabled="{Binding IsMain}" />
+									<RadioButton Content="90"
+												 GroupName="ScaleGroup"
+												 Margin="10,10,10,8"
+												 IsChecked="{Binding Scale, Converter={StaticResource RadioButtonScaleCheckedConverter}, ConverterParameter=90}"
+												 IsEnabled="{Binding IsMain}" />
+								</StackPanel>
+							</GroupBox>
+							<GroupBox Header="Graphs"
+									  ToolTip="Select type of graphs to display"
+									  Margin="10">
+								<StackPanel Orientation="Horizontal">
+									<RadioButton Content="Main"
+												 GroupName="TypeGroup"
+												 Margin="10"
+												 IsChecked="{Binding IsMain, Converter={StaticResource RadioButtonMainCheckedConverter}, ConverterParameter=True}" />
+									<RadioButton Content="Aux"
+												 GroupName="TypeGroup"
+												 Margin="10"
+												 IsChecked="{Binding IsMain, Converter={StaticResource RadioButtonMainCheckedConverter}, ConverterParameter=False}" />
+								</StackPanel>
+							</GroupBox>
+						</StackPanel>
+					</syncfusion:TabItemExt>
+					<syncfusion:TabItemExt Header="People"
+										   DataContext="{Binding People, Source={StaticResource Locator}}"
+										   IsNewTab="False">
+						<ListView Grid.Column="1"
+								  ItemsSource="{Binding People}"
+								  ItemTemplateSelector="{StaticResource peopleTemplateSelector}" />
+					</syncfusion:TabItemExt>
+				</syncfusion:TabControlExt>
+			</Grid>
+		</xctk:BusyIndicator>
+	</Grid>
+</Window>

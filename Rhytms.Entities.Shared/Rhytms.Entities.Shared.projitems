@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3e525269-6377-4462-b7fc-f28ad970341d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Rhytms.Entities.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GraphInnerState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGraph.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPerson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)People.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Person.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Point.cs" />
+  </ItemGroup>
+</Project>

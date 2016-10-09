@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e405f0a7-ec8e-44c4-83cc-22998d0d28bc</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Rhythms.Shared.Xaml</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ScrollIntoViewBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToCustomValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BreakDebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FloatToPrettyStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateToPrettyStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PeopleTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioButtonBoolConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioButtonScaleConverter.cs" />
+  </ItemGroup>
+</Project>

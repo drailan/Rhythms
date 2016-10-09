@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="clr-namespace:Rhythms.Win.Style">
+	<SolidColorBrush Color="#FF0000"
+					 x:Key="Graph24Brush" />
+
+	<SolidColorBrush Color="#0000FF"
+					 x:Key="Graph28Brush" />
+
+	<SolidColorBrush Color="#008000"
+					 x:Key="Graph33Brush" />
+
+	<SolidColorBrush Color="Black"
+					 x:Key="Graph40Brush" />
+
+	<SolidColorBrush Color="#FFFF00"
+					 x:Key="Graph56Brush" />
+
+	<SolidColorBrush Color="#FFA500"
+					 x:Key="Graph92Brush" />
+
+	<SolidColorBrush Color="#800080"
+					 x:Key="Graph276Brush" />
+</ResourceDictionary>
