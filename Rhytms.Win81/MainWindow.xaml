@@ -110,8 +110,7 @@
 					<syncfusion:TabItemExt Header="People"
 										   DataContext="{Binding People, Source={StaticResource Locator}}"
 										   IsNewTab="False">
-						<ListView Grid.Column="1"
-								  ItemsSource="{Binding People}"
+						<ListView ItemsSource="{Binding People}"
 								  ItemTemplateSelector="{StaticResource peopleTemplateSelector}" />
 					</syncfusion:TabItemExt>
 				</syncfusion:TabControlExt>

@@ -253,6 +253,7 @@ namespace Rhythms.Shared.Presentation
 		public MainWindowViewModel()
 		{
 			InitSubjects();
+
 			ObserveScale(_scaleSubject);
 			ObserveDates(_firstDateSubject, _secondDateSubject);
 			ObserveIsMain(_isMainSubject);
@@ -369,14 +370,12 @@ namespace Rhythms.Shared.Presentation
 
 		private async Task GenerateGraphs(DateTime birthday, DateTime secondbirthday)
 		{
-			var totalDays = DateTime.Today - birthday;
+			var firstTotalDays = DateTime.Today - birthday;
+			var secondTotalDays = DateTime.Today - secondbirthday;
 
 			if (IsMain)
 			{
-				GraphStates = new RangeEnabledObservableCollection<GraphState>();
-
 				InitMainBounds();
-
 
 				var graphs = InnerGenerateGraphs(birthday);
 
@@ -384,16 +383,30 @@ namespace Rhythms.Shared.Presentation
 
 				Parallel.For(-Scale / 2, Scale / 2, (i) =>
 				{
-					var states = graphs.GetGraphStates(totalDays.Days, i);
+					var firstStates = graphs.GetGraphStates(firstTotalDays.Days, i);
 
 					var date = DateTime.Now.AddDays(i);
 
-					statesRange[date] = new GraphState(date, states);
+					if (secondbirthday != DateTime.MinValue && secondbirthday != DateTime.Today)
+					{
+						var secondStates = graphs.GetGraphStates(secondTotalDays.Days, i);
+						statesRange[date] = new GraphState(date, firstStates, secondStates);
+					}
+					else
+					{
+						statesRange[date] = new GraphState(date, firstStates);
+					}
 				});
 
 				var statesList = statesRange
 					.OrderBy(x => x.Key)
 					.Select(x => x.Value);
+
+				var t = DispatcherHelper.RunAsync(() =>
+				{
+					GraphStates = new RangeEnabledObservableCollection<GraphState>();
+					GraphStates.InsertRange(statesList);
+				});
 
 				if (birthday != DateTime.Today)
 				{
@@ -403,9 +416,7 @@ namespace Rhythms.Shared.Presentation
 					Graph40 = new RangeEnabledObservableCollection<Point>(graphs.ElementAt(3).Points);
 				}
 
-				await DispatcherHelper.RunAsync(() => GraphStates.InsertRange(statesList));
-
-				if (secondbirthday != DateTime.Today)
+				if (secondbirthday != DateTime.Today && secondbirthday != DateTime.MinValue)
 				{
 					graphs = InnerGenerateGraphs(secondbirthday);
 
@@ -414,19 +425,28 @@ namespace Rhythms.Shared.Presentation
 					Graph33_2 = new RangeEnabledObservableCollection<Point>(graphs.ElementAt(2).Points);
 					Graph40_2 = new RangeEnabledObservableCollection<Point>(graphs.ElementAt(3).Points);
 				}
+				else
+				{
+					Graph24_2 = null;
+					Graph28_2 = null;
+					Graph33_2 = null;
+					Graph40_2 = null;
+				}
+
+				await t;
 			}
 			else
 			{
 				InitAuxBounds();
 
 				var g56 = new Graph56();
-				g56.GenerateGraph(totalDays.Days, _auxScale);
+				g56.GenerateGraph(firstTotalDays.Days, _auxScale);
 
 				var g92 = new Graph92();
-				g92.GenerateGraph(totalDays.Days, _auxScale);
+				g92.GenerateGraph(firstTotalDays.Days, _auxScale);
 
 				var g276 = new Graph276();
-				g276.GenerateGraph(totalDays.Days, _auxScale);
+				g276.GenerateGraph(firstTotalDays.Days, _auxScale);
 
 				Graph56 = new RangeEnabledObservableCollection<Point>(g56.Points);
 				Graph92 = new RangeEnabledObservableCollection<Point>(g92.Points);

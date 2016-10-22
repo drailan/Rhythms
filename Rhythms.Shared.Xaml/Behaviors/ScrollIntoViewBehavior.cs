@@ -64,6 +64,11 @@ namespace Rhythms.Shared.Xaml.Behaviors
 
 			var itemWidth = 92;
 
+			if (listItem.SecondStates != null)
+			{
+				itemWidth = 170;
+			}
+
 			if (listItem != null)
 			{
 				var index = AssociatedObject.Items.IndexOf(listItem);

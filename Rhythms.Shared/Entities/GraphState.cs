@@ -10,17 +10,20 @@ namespace Rhythms.Shared.Entities
 	{
 		public IGraph Parent { get; set; }
 		public DateTime Date { get; set; }
-		public GraphInnerState[] States { get; set; }
+		public GraphInnerState[] FirstStates { get; set; }
+		public GraphInnerState[] SecondStates { get; set; }
 
-		public GraphState(IGraph p, IEnumerable<GraphInnerState> s)
+		public GraphState(IGraph p, IEnumerable<GraphInnerState> s, IEnumerable<GraphInnerState> y = null)
 		{
 			Parent = p;
-			States = s.ToArray();
+			FirstStates = s.ToArray();
+			SecondStates = y?.ToArray();
 		}
 
-		public GraphState(DateTime d, IEnumerable<GraphInnerState> s)
+		public GraphState(DateTime d, IEnumerable<GraphInnerState> s, IEnumerable<GraphInnerState> y = null)
 		{
-			States = s.ToArray();
+			FirstStates = s.ToArray();
+			SecondStates = y?.ToArray();
 			Date = d;
 		}
 	}

@@ -1,24 +1,25 @@
-﻿<Application x:Class="Rhythms.Win.App"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:local="clr-namespace:Rhythms.Win"
-			 StartupUri="MainWindow.xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 d1p1:Ignorable="d"
 			 xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:c="clr-namespace:Rhythms.Shared.Xaml.Converters">
+			 xmlns:c="clr-namespace:Rhythms.Shared.Xaml.Converters"
+			 x:Class="Rhythms.Win.App"
+			 StartupUri="MainWindow.xaml"
+			 d1p1:Ignorable="d">
 	<Application.Resources>
 		<ResourceDictionary>
-			<vm:ViewModelLocator x:Key="Locator"
-								 d:IsDataSource="True"
-								 xmlns:vm="clr-namespace:Rhythms.Win.ViewModel" />
-
-			<c:BreakDebugConverter x:Key="test" />
 
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Style/Colors.xaml" />
 				<ResourceDictionary Source="Style/DataTemplates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+			<vm:ViewModelLocator xmlns:vm="clr-namespace:Rhythms.Win.ViewModel"
+								 x:Key="Locator"
+								 d:IsDataSource="True" />
+
+			<c:BreakDebugConverter x:Key="test" />
+
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

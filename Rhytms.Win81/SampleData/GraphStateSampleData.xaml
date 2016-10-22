@@ -1,0 +1,110 @@
+﻿<Entities:GraphState xmlns:Entities="clr-namespace:Rhythms.Shared.Entities" xmlns:Markup="clr-namespace:System.Windows.Markup;assembly=System.Xaml" xmlns:System="clr-namespace:System;assembly=mscorlib" Date="10/15/2016 10:31:31">
+	<Entities:GraphState.FirstStates>
+		<Markup:Array Type="{Markup:Type Entities:GraphInnerState}">
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+		</Markup:Array>
+	</Entities:GraphState.FirstStates>
+	<Entities:GraphState.SecondStates>
+		<Markup:Array Type="{Markup:Type Entities:GraphInnerState}">
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="True">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+			<Entities:GraphInnerState Date="10/15/2016 10:31:31" IsGrowing="False">
+				<Entities:GraphInnerState.State>
+					<System:Single/>
+				</Entities:GraphInnerState.State>
+			</Entities:GraphInnerState>
+		</Markup:Array>
+	</Entities:GraphState.SecondStates>
+</Entities:GraphState>

@@ -24,9 +24,9 @@
 										  Minimum="{Binding GraphYMin}" />
 			</syncfusion:SfChart.SecondaryAxis>
 
-			<syncfusion:SfChart.Legend>
+			<!--<syncfusion:SfChart.Legend>
 				<syncfusion:ChartLegend CheckBoxVisibility="Collapsed" />
-			</syncfusion:SfChart.Legend>
+			</syncfusion:SfChart.Legend>-->
 
 			<syncfusion:FastLineSeries ItemsSource="{Binding Graph24}"
 									   Interior="{StaticResource Graph24Brush}"

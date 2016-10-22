@@ -22,6 +22,7 @@ namespace Rhythms.Win.ViewModel
 		public static void Cleanup()
 		{
 			ServiceLocator.Current.GetInstance<MainWindowViewModel>().Cleanup();
+			ServiceLocator.Current.GetInstance<PeopleViewModel>().Cleanup();
 		}
 	}
 }

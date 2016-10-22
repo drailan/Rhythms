@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BreakDebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FloatToPrettyStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateToPrettyStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\GraphStateTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PeopleTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioButtonBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioButtonScaleConverter.cs" />

@@ -6,10 +6,18 @@
 			 xmlns:b="clr-namespace:Rhythms.Shared.Xaml.Behaviors"
 			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+			 xmlns:c="clr-namespace:Rhythms.Shared.Xaml.Converters"
 			 x:Class="Rhythms.Win.Controls.GraphStateControl"
 			 mc:Ignorable="d"
 			 d:DesignHeight="300"
 			 d:DesignWidth="300">
+
+	<UserControl.Resources>
+		<c:GraphStateTemplateSelector x:Key="graphStateTemplateSeletor"
+									  Single="{StaticResource GraphStateTemplate}"
+									  Double="{StaticResource DoubleGraphStateTemplate}" />
+	</UserControl.Resources>
+
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="70" />
@@ -40,7 +48,7 @@
 		</StackPanel>
 		<ListView Grid.Column="1"
 				  ItemsSource="{Binding GraphStates}"
-				  ItemTemplate="{StaticResource GraphStateTemplate}">
+				  ItemTemplateSelector="{StaticResource graphStateTemplateSeletor}">
 			<ListView.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel Orientation="Horizontal" />

@@ -21,160 +21,174 @@
 									Format="P" />
 
 	<DataTemplate x:Key="singlePersonTemplate">
-		<Grid Width="250">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="100" />
-			</Grid.ColumnDefinitions>
+		<Border BorderThickness="1"
+				BorderBrush="Green">
+			<Grid Width="250">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="100" />
+				</Grid.ColumnDefinitions>
 
-			<StackPanel Orientation="Vertical"
-						Grid.Column="0"
-						Height="50">
-				<TextBlock Text="{Binding Item.FirstName}" />
-				<TextBlock Text="{Binding Item.FirstBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
-			</StackPanel>
-
-			<StackPanel Orientation="Horizontal"
-						Grid.Column="1"
-						Height="50"
-						HorizontalAlignment="Right">
-				<Button Width="20"
-						Height="20"
-						Command="{Binding Parent.View}"
-						CommandParameter="{Binding Item}">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid>
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M9.8010254,4.7550061C7.5220032,5.9089983 5.5870056,7.4539969 4.2440186,8.692004 6.6970215,10.949008 11.129028,14.271 15.996033,14.271 20.863037,14.271 25.30304,10.949008 27.747986,8.692004 26.413025,7.4539969 24.470032,5.9089983 22.197998,4.7550061 22.377991,5.2720044 22.475037,5.8119982 22.475037,6.3820055 22.475037,9.5010097 19.572998,12.02901 15.996033,12.02901 12.419006,12.02901 9.5240173,9.5010097 9.5240173,6.3820055 9.5240173,5.8119982 9.6220093,5.2720044 9.8010254,4.7550061z M15.996033,0C24.830017,1.9660001E-07 32,8.692004 32,8.692004 32,8.692004 24.830017,17.383 15.996033,17.383 7.1620178,17.383 0,8.692004 0,8.692004 0,8.692004 7.1620178,1.9660001E-07 15.996033,0z"
-								  Stretch="Uniform"
-								  Fill="#FF00DF81"
-								  Width="20"
-								  Height="20"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-				<Button Width="20"
-						Height="20">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid Width="20"
-							  Height="20">
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M0,22.691865L9.6958332,27.864942 0.24500618,32.000013z M8.8988495,6.3116251L18.869686,12.034729 11.211813,25.370919 10.644821,23.665877 7.7198686,23.364879 7.2188854,21.531844 4.3549361,21.429853 3.5479436,19.422835 1.2459807,19.647815z M13.690775,0.00052993685C13.965764,-0.0064584891,14.233765,0.055554115,14.474758,0.19355655L21.534634,4.2476002C22.392622,4.7375976,22.586618,6.0146238,21.968632,7.0966398L21.126636,8.5616571 10.95782,2.7255753 11.799801,1.2555529C12.243793,0.48054798,12.988775,0.017528671,13.690775,0.00052993685z"
-								  Stretch="Uniform"
-								  Fill="#FFFFFFFF"
-								  Width="12"
-								  Height="12"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-				<Button Width="20"
-						Height="20">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid>
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M2.999979,0C3.8000264,0,4.4999763,0.30000305,5.1000115,0.90000927L15.999954,11.700012 26.899959,0.90000927C28.099967,-0.29998779 29.999927,-0.29998779 31.099961,0.90000927 32.299972,2.1000061 32.299972,4 31.099961,5.1000061L20.199958,16 31.099961,26.900009C32.299972,28.100006 32.299972,30 31.099961,31.100006 29.899951,32.300003 27.999931,32.300003 26.899959,31.100006L15.999954,20.200012 5.1000115,31.100006C3.9000017,32.300003 1.9999809,32.300003 0.90000743,31.100006 -0.30000248,29.900009 -0.30000248,28 0.90000743,26.900009L11.800011,16 0.90000743,5.1000061C-0.30000248,3.9000092 -0.30000248,2 0.90000743,0.90000927 1.4999818,0.30000305 2.1999928,0 2.999979,0z"
-								  Stretch="Uniform"
-								  Fill="#FFFC0000"
-								  Width="20"
-								  Height="20"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-			</StackPanel>
-		</Grid>
-	</DataTemplate>
-
-	<DataTemplate x:Key="doublePersonTemplate">
-		<Grid Width="250">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="100" />
-			</Grid.ColumnDefinitions>
-
-			<StackPanel Orientation="Vertical"
-						Grid.Column="0">
-				<StackPanel Orientation="Vertical">
+				<StackPanel Orientation="Vertical"
+							Grid.Column="0"
+							Height="50">
 					<TextBlock Text="{Binding Item.FirstName}" />
 					<TextBlock Text="{Binding Item.FirstBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
 				</StackPanel>
-				<StackPanel Orientation="Vertical">
-					<TextBlock Text="{Binding Item.SecondName}" />
-					<TextBlock Text="{Binding Item.SecondBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
-				</StackPanel>
-			</StackPanel>
 
-			<StackPanel Orientation="Horizontal"
-						Grid.Column="1"
-						Height="50"
-						HorizontalAlignment="Right">
-				<Button Width="20"
-						Height="20"
-						Command="{Binding Parent.View}"
-						CommandParameter="{Binding Item}">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid>
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M9.8010254,4.7550061C7.5220032,5.9089983 5.5870056,7.4539969 4.2440186,8.692004 6.6970215,10.949008 11.129028,14.271 15.996033,14.271 20.863037,14.271 25.30304,10.949008 27.747986,8.692004 26.413025,7.4539969 24.470032,5.9089983 22.197998,4.7550061 22.377991,5.2720044 22.475037,5.8119982 22.475037,6.3820055 22.475037,9.5010097 19.572998,12.02901 15.996033,12.02901 12.419006,12.02901 9.5240173,9.5010097 9.5240173,6.3820055 9.5240173,5.8119982 9.6220093,5.2720044 9.8010254,4.7550061z M15.996033,0C24.830017,1.9660001E-07 32,8.692004 32,8.692004 32,8.692004 24.830017,17.383 15.996033,17.383 7.1620178,17.383 0,8.692004 0,8.692004 0,8.692004 7.1620178,1.9660001E-07 15.996033,0z"
-								  Stretch="Uniform"
-								  Fill="#FF00DF81"
-								  Width="20"
-								  Height="20"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-				<Button Width="20"
-						Height="20">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid Width="20"
-							  Height="20">
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M0,22.691865L9.6958332,27.864942 0.24500618,32.000013z M8.8988495,6.3116251L18.869686,12.034729 11.211813,25.370919 10.644821,23.665877 7.7198686,23.364879 7.2188854,21.531844 4.3549361,21.429853 3.5479436,19.422835 1.2459807,19.647815z M13.690775,0.00052993685C13.965764,-0.0064584891,14.233765,0.055554115,14.474758,0.19355655L21.534634,4.2476002C22.392622,4.7375976,22.586618,6.0146238,21.968632,7.0966398L21.126636,8.5616571 10.95782,2.7255753 11.799801,1.2555529C12.243793,0.48054798,12.988775,0.017528671,13.690775,0.00052993685z"
-								  Stretch="Uniform"
-								  Fill="#FFFFFFFF"
-								  Width="12"
-								  Height="12"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-				<Button Width="20"
-						Height="20">
-					<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-						<Grid>
-							<Grid Width="24"
-								  Height="24"
-								  Visibility="Collapsed" />
-							<Path Data="M2.999979,0C3.8000264,0,4.4999763,0.30000305,5.1000115,0.90000927L15.999954,11.700012 26.899959,0.90000927C28.099967,-0.29998779 29.999927,-0.29998779 31.099961,0.90000927 32.299972,2.1000061 32.299972,4 31.099961,5.1000061L20.199958,16 31.099961,26.900009C32.299972,28.100006 32.299972,30 31.099961,31.100006 29.899951,32.300003 27.999931,32.300003 26.899959,31.100006L15.999954,20.200012 5.1000115,31.100006C3.9000017,32.300003 1.9999809,32.300003 0.90000743,31.100006 -0.30000248,29.900009 -0.30000248,28 0.90000743,26.900009L11.800011,16 0.90000743,5.1000061C-0.30000248,3.9000092 -0.30000248,2 0.90000743,0.90000927 1.4999818,0.30000305 2.1999928,0 2.999979,0z"
-								  Stretch="Uniform"
-								  Fill="#FFFC0000"
-								  Width="20"
-								  Height="20"
-								  Margin="0,0,0,0"
-								  RenderTransformOrigin="0.5,0.5" />
-						</Grid>
-					</Viewbox>
-				</Button>
-			</StackPanel>
-		</Grid>
+				<StackPanel Orientation="Horizontal"
+							Grid.Column="1"
+							Height="50"
+							HorizontalAlignment="Right">
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.View}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid>
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M9.8010254,4.7550061C7.5220032,5.9089983 5.5870056,7.4539969 4.2440186,8.692004 6.6970215,10.949008 11.129028,14.271 15.996033,14.271 20.863037,14.271 25.30304,10.949008 27.747986,8.692004 26.413025,7.4539969 24.470032,5.9089983 22.197998,4.7550061 22.377991,5.2720044 22.475037,5.8119982 22.475037,6.3820055 22.475037,9.5010097 19.572998,12.02901 15.996033,12.02901 12.419006,12.02901 9.5240173,9.5010097 9.5240173,6.3820055 9.5240173,5.8119982 9.6220093,5.2720044 9.8010254,4.7550061z M15.996033,0C24.830017,1.9660001E-07 32,8.692004 32,8.692004 32,8.692004 24.830017,17.383 15.996033,17.383 7.1620178,17.383 0,8.692004 0,8.692004 0,8.692004 7.1620178,1.9660001E-07 15.996033,0z"
+									  Stretch="Uniform"
+									  Fill="#FF00DF81"
+									  Width="20"
+									  Height="20"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.Edit}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid Width="20"
+								  Height="20">
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M0,22.691865L9.6958332,27.864942 0.24500618,32.000013z M8.8988495,6.3116251L18.869686,12.034729 11.211813,25.370919 10.644821,23.665877 7.7198686,23.364879 7.2188854,21.531844 4.3549361,21.429853 3.5479436,19.422835 1.2459807,19.647815z M13.690775,0.00052993685C13.965764,-0.0064584891,14.233765,0.055554115,14.474758,0.19355655L21.534634,4.2476002C22.392622,4.7375976,22.586618,6.0146238,21.968632,7.0966398L21.126636,8.5616571 10.95782,2.7255753 11.799801,1.2555529C12.243793,0.48054798,12.988775,0.017528671,13.690775,0.00052993685z"
+									  Stretch="Uniform"
+									  Fill="#FFFFFFFF"
+									  Width="12"
+									  Height="12"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.Delete}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid>
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M2.999979,0C3.8000264,0,4.4999763,0.30000305,5.1000115,0.90000927L15.999954,11.700012 26.899959,0.90000927C28.099967,-0.29998779 29.999927,-0.29998779 31.099961,0.90000927 32.299972,2.1000061 32.299972,4 31.099961,5.1000061L20.199958,16 31.099961,26.900009C32.299972,28.100006 32.299972,30 31.099961,31.100006 29.899951,32.300003 27.999931,32.300003 26.899959,31.100006L15.999954,20.200012 5.1000115,31.100006C3.9000017,32.300003 1.9999809,32.300003 0.90000743,31.100006 -0.30000248,29.900009 -0.30000248,28 0.90000743,26.900009L11.800011,16 0.90000743,5.1000061C-0.30000248,3.9000092 -0.30000248,2 0.90000743,0.90000927 1.4999818,0.30000305 2.1999928,0 2.999979,0z"
+									  Stretch="Uniform"
+									  Fill="#FFFC0000"
+									  Width="20"
+									  Height="20"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+	</DataTemplate>
+
+	<DataTemplate x:Key="doublePersonTemplate">
+		<Border BorderBrush="Blue"
+				BorderThickness="1">
+			<Grid Width="250">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="100" />
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Orientation="Vertical"
+							Grid.Column="0">
+					<StackPanel Orientation="Vertical">
+						<TextBlock Text="{Binding Item.FirstName}" />
+						<TextBlock Text="{Binding Item.FirstBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
+					</StackPanel>
+					<StackPanel Orientation="Vertical">
+						<TextBlock Text="{Binding Item.SecondName}" />
+						<TextBlock Text="{Binding Item.SecondBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal"
+							Grid.Column="1"
+							Height="50"
+							HorizontalAlignment="Right">
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.View}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid>
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M9.8010254,4.7550061C7.5220032,5.9089983 5.5870056,7.4539969 4.2440186,8.692004 6.6970215,10.949008 11.129028,14.271 15.996033,14.271 20.863037,14.271 25.30304,10.949008 27.747986,8.692004 26.413025,7.4539969 24.470032,5.9089983 22.197998,4.7550061 22.377991,5.2720044 22.475037,5.8119982 22.475037,6.3820055 22.475037,9.5010097 19.572998,12.02901 15.996033,12.02901 12.419006,12.02901 9.5240173,9.5010097 9.5240173,6.3820055 9.5240173,5.8119982 9.6220093,5.2720044 9.8010254,4.7550061z M15.996033,0C24.830017,1.9660001E-07 32,8.692004 32,8.692004 32,8.692004 24.830017,17.383 15.996033,17.383 7.1620178,17.383 0,8.692004 0,8.692004 0,8.692004 7.1620178,1.9660001E-07 15.996033,0z"
+									  Stretch="Uniform"
+									  Fill="#FF00DF81"
+									  Width="20"
+									  Height="20"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.Edit}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid Width="20"
+								  Height="20">
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M0,22.691865L9.6958332,27.864942 0.24500618,32.000013z M8.8988495,6.3116251L18.869686,12.034729 11.211813,25.370919 10.644821,23.665877 7.7198686,23.364879 7.2188854,21.531844 4.3549361,21.429853 3.5479436,19.422835 1.2459807,19.647815z M13.690775,0.00052993685C13.965764,-0.0064584891,14.233765,0.055554115,14.474758,0.19355655L21.534634,4.2476002C22.392622,4.7375976,22.586618,6.0146238,21.968632,7.0966398L21.126636,8.5616571 10.95782,2.7255753 11.799801,1.2555529C12.243793,0.48054798,12.988775,0.017528671,13.690775,0.00052993685z"
+									  Stretch="Uniform"
+									  Fill="#FFFFFFFF"
+									  Width="12"
+									  Height="12"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+					<Button Width="20"
+							Height="20"
+							Command="{Binding Parent.Delete}"
+							CommandParameter="{Binding Item}">
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+							<Grid>
+								<Grid Width="24"
+									  Height="24"
+									  Visibility="Collapsed" />
+								<Path Data="M2.999979,0C3.8000264,0,4.4999763,0.30000305,5.1000115,0.90000927L15.999954,11.700012 26.899959,0.90000927C28.099967,-0.29998779 29.999927,-0.29998779 31.099961,0.90000927 32.299972,2.1000061 32.299972,4 31.099961,5.1000061L20.199958,16 31.099961,26.900009C32.299972,28.100006 32.299972,30 31.099961,31.100006 29.899951,32.300003 27.999931,32.300003 26.899959,31.100006L15.999954,20.200012 5.1000115,31.100006C3.9000017,32.300003 1.9999809,32.300003 0.90000743,31.100006 -0.30000248,29.900009 -0.30000248,28 0.90000743,26.900009L11.800011,16 0.90000743,5.1000061C-0.30000248,3.9000092 -0.30000248,2 0.90000743,0.90000927 1.4999818,0.30000305 2.1999928,0 2.999979,0z"
+									  Stretch="Uniform"
+									  Fill="#FFFC0000"
+									  Width="20"
+									  Height="20"
+									  Margin="0,0,0,0"
+									  RenderTransformOrigin="0.5,0.5" />
+							</Grid>
+						</Viewbox>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
 	</DataTemplate>
 
 	<DataTemplate x:Key="GraphStateTemplate">
@@ -187,7 +201,7 @@
 				<StackPanel Orientation="Horizontal">
 					<Grid>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[0].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+								 Visibility="{Binding FirstStates[0].IsGrowing, Converter={StaticResource BoolToVisibility}}">
 							<Grid>
 								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
 									  Stretch="Uniform"
@@ -199,7 +213,7 @@
 							</Grid>
 						</Viewbox>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[0].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+								 Visibility="{Binding FirstStates[0].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
 							<Grid>
 								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
 									  Stretch="Uniform"
@@ -211,13 +225,13 @@
 							</Grid>
 						</Viewbox>
 					</Grid>
-					<TextBlock Text="{Binding States[0].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+					<TextBlock Text="{Binding FirstStates[0].State, Converter={StaticResource FloatToPrettyStringConverter}}"
 							   Margin="10,0,0,0" />
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<Grid>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[1].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+								 Visibility="{Binding FirstStates[1].IsGrowing, Converter={StaticResource BoolToVisibility}}">
 							<Grid>
 								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
 									  Stretch="Uniform"
@@ -229,7 +243,7 @@
 							</Grid>
 						</Viewbox>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[1].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+								 Visibility="{Binding FirstStates[1].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
 							<Grid>
 								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
 									  Stretch="Uniform"
@@ -241,13 +255,13 @@
 							</Grid>
 						</Viewbox>
 					</Grid>
-					<TextBlock Text="{Binding States[1].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+					<TextBlock Text="{Binding FirstStates[1].State, Converter={StaticResource FloatToPrettyStringConverter}}"
 							   Margin="10,0,0,0" />
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<Grid>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[2].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+								 Visibility="{Binding FirstStates[2].IsGrowing, Converter={StaticResource BoolToVisibility}}">
 							<Grid>
 								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
 									  Stretch="Uniform"
@@ -259,7 +273,7 @@
 							</Grid>
 						</Viewbox>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[2].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+								 Visibility="{Binding FirstStates[2].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
 							<Grid>
 								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
 									  Stretch="Uniform"
@@ -271,13 +285,13 @@
 							</Grid>
 						</Viewbox>
 					</Grid>
-					<TextBlock Text="{Binding States[2].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+					<TextBlock Text="{Binding FirstStates[2].State, Converter={StaticResource FloatToPrettyStringConverter}}"
 							   Margin="10,0,0,0" />
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<Grid>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[3].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+								 Visibility="{Binding FirstStates[3].IsGrowing, Converter={StaticResource BoolToVisibility}}">
 							<Grid>
 								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
 									  Stretch="Uniform"
@@ -289,7 +303,7 @@
 							</Grid>
 						</Viewbox>
 						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-								 Visibility="{Binding States[3].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+								 Visibility="{Binding FirstStates[3].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
 							<Grid>
 								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
 									  Stretch="Uniform"
@@ -301,7 +315,259 @@
 							</Grid>
 						</Viewbox>
 					</Grid>
-					<TextBlock Text="{Binding States[3].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+					<TextBlock Text="{Binding FirstStates[3].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" />
+				</StackPanel>
+			</StackPanel>
+		</Border>
+	</DataTemplate>
+
+	<DataTemplate x:Key="DoubleGraphStateTemplate">
+		<Border Background="GhostWhite"
+				BorderBrush="Gainsboro"
+				BorderThickness="1">
+			<StackPanel Orientation="Vertical"
+						Width="160">
+				<TextBlock Text="{Binding Date, Converter={StaticResource DateToPrettyStringConverter}}"
+						   TextAlignment="Center"/>
+				<StackPanel Orientation="Horizontal">
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[0].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[0].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding FirstStates[0].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" 
+							   MinWidth="60"/>
+
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[0].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[0].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding SecondStates[0].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" />
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[1].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[1].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding FirstStates[1].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" 
+							   MinWidth="60"/>
+
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[1].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[1].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding SecondStates[1].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" />
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[2].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[2].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding FirstStates[2].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0"
+							   MinWidth="60"/>
+
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[2].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[2].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding SecondStates[2].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0" />
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[3].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding FirstStates[3].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding FirstStates[3].State, Converter={StaticResource FloatToPrettyStringConverter}}"
+							   Margin="10,0,0,0"
+							   MinWidth="60"/>
+
+										<Grid>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[3].IsGrowing, Converter={StaticResource BoolToVisibility}}">
+							<Grid>
+								<Path Data="M16.261993,0L16.359985,0.065002445 16.454987,0 16.48999,0.15399169 32,11.294986 32,19.745 16.359985,8.5149861 0,19.745 0,11.294986 16.22699,0.15399169z"
+									  Stretch="Uniform"
+									  Fill="#FF00FF00"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+						<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								 Visibility="{Binding SecondStates[3].IsGrowing, Converter={StaticResource InverseBoolToVisibility}}">
+							<Grid>
+								<Path Data="M0.085998535,0L16.112,11.464981 32,0.118011 32,8.3990061 16.115005,19.745 0,8.2079966 0,0.072997569z"
+									  Stretch="Uniform"
+									  Fill="#FFFF0000"
+									  Width="10"
+									  Height="10"
+									  Margin="0,0,0,0">
+								</Path>
+							</Grid>
+						</Viewbox>
+					</Grid>
+					<TextBlock Text="{Binding SecondStates[3].State, Converter={StaticResource FloatToPrettyStringConverter}}"
 							   Margin="10,0,0,0" />
 				</StackPanel>
 			</StackPanel>
