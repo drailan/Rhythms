@@ -1,17 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GalaSoft.MvvmLight;
 
 namespace Rhythms.Shared.Entities
 {
-	public class Entry
+	public class Entry : ObservableObject
 	{
-		public string FirstName { get; set; }
-		public DateTime FirstBirthDate { get; set; }
+		private string _firstName;
 
-		public string SecondName { get; set; }
+		public string FirstName
+		{
+			get { return _firstName; }
+			set { Set(() => FirstName, ref _firstName, value); }
+		}
 
-		public DateTime SecondBirthDate { get; set; }
+		public string _secondName;
+
+		public string SecondName
+		{
+			get { return _secondName; }
+			set { Set(() => SecondName, ref _secondName, value); }
+		}
+
+		private DateTime _firstBirthDate;
+		public DateTime FirstBirthDate
+		{
+			get { return _firstBirthDate; }
+			set { Set(() => FirstBirthDate, ref _firstBirthDate, value); }
+		}
+
+		private DateTime _secondBirthDate;
+		public DateTime SecondBirthDate
+		{
+			get { return _secondBirthDate; }
+			set { Set(() => SecondBirthDate, ref _secondBirthDate, value); }
+		}
+
+		private bool _isEditing;
+		public bool IsEditing
+		{
+			get { return _isEditing; }
+			set { Set(() => IsEditing, ref _isEditing, value); }
+		}
 
 		public Entry(string name, DateTime bDay)
 		{

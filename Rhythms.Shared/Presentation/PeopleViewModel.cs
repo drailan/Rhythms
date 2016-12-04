@@ -12,14 +12,23 @@ using Rhythms.Shared.Extensions;
 using ParentedEntryItem = Presentation.ParentedItem<Rhythms.Shared.Entities.Entry, Rhythms.Shared.Presentation.PeopleViewModel>;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Subjects;
+using System.Reactive.Linq;
+using GalaSoft.MvvmLight.Ioc;
+using Rhythms.Shared.Interfaces;
+using System.Threading.Tasks;
+using Rhythms.Shared.Business;
 
 namespace Rhythms.Shared.Presentation
 {
 	public class PeopleViewModel : ViewModelBase
 	{
-		private ObservableCollection<ParentedEntryItem> _people;
+		private RangeEnabledObservableCollection<ParentedEntryItem> _people;
+		private IDataProvider _dataProvider;
 
-		public ObservableCollection<ParentedEntryItem> People
+		private Entry _item;
+
+		public RangeEnabledObservableCollection<ParentedEntryItem> People
 		{
 			get { return _people; }
 			set { Set(() => People, ref _people, value); }
@@ -27,15 +36,20 @@ namespace Rhythms.Shared.Presentation
 
 		public PeopleViewModel()
 		{
-			var p1 = new Entry("D2", new DateTime(1988, 9, 22));
-			var p2 = new Entry("D1", new DateTime(1987, 6, 10));
-			var p3 = new Entry("D1", "D2", new DateTime(1987, 6, 10), new DateTime(1988, 9, 22));
+			People = new RangeEnabledObservableCollection<ParentedEntryItem>();
 
-			People = new ObservableCollection<ParentedEntryItem>();
+			_dataProvider = SimpleIoc.Default.GetInstance<IDataProvider>();
 
-			People.Add(this.CreateParented(p1));
-			People.Add(this.CreateParented(p2));
-			People.Add(this.CreateParented(p3));
+			Task.Run(async () =>
+			{
+				var peopleData = await _dataProvider.GetPeople();
+
+				var people = peopleData.People
+					.Select(p => p.ToEntry())
+					.Select(e => this.CreateParented(e));
+
+				People.InsertRange(people);
+			});
 		}
 
 		public ICommand View => new RelayCommand<Entry>(entry =>
@@ -52,15 +66,54 @@ namespace Rhythms.Shared.Presentation
 			}
 		});
 
-		public ICommand Delete => new RelayCommand<Entry>(entry =>
+		public ICommand Delete => new RelayCommand<Entry>(async entry =>
 		{
 			var person = People.Where(p => p.Item.Equals(entry)).FirstOrDefault();
 			People.Remove(person);
+
+			await SavePeople();
 		});
 
 		public ICommand Edit => new RelayCommand<Entry>(entry =>
 		{
+			var newEntry = new Entry(entry.FirstName, entry.SecondName, entry.FirstBirthDate, entry.SecondBirthDate);
+			_item = newEntry;
 
+			entry.IsEditing = true;
 		});
+
+		public ICommand Save => new RelayCommand<Entry>(async entry =>
+		{
+			var person = People
+				.Where(p => p.Item.Equals(entry))
+				.FirstOrDefault();
+
+			person = this.CreateParented(entry);
+
+			_item = null;
+
+			entry.IsEditing = false;
+
+			await SavePeople();
+		});
+
+		public ICommand Discard => new RelayCommand<Entry>(entry =>
+		{
+			var oldEntry = _item;
+
+			entry.FirstBirthDate = oldEntry.FirstBirthDate;
+			entry.SecondBirthDate = oldEntry.SecondBirthDate;
+			entry.FirstName = oldEntry.FirstName;
+			entry.SecondName = oldEntry.SecondName;
+
+			entry.IsEditing = false;
+		});
+
+		private async Task SavePeople()
+		{
+			var peopleData = People.Select(p => p.Item.ToEntryData()).ToArray();
+
+			await _dataProvider.SavePeople(peopleData);
+		}
 	}
 }

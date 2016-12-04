@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Threading;
-using Syncfusion.UI.Xaml.Charts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,28 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Rhythms.Shared;
 
-namespace Rhythms.Win
+namespace Rhytms.Win
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for PopupWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class PopupWindow : Window
 	{
-		public MainWindow()
+		public PopupWindow()
 		{
 			InitializeComponent();
-		}
-
-		static MainWindow()
-		{
-			DispatcherHelper.Initialize();
-
-			var module = new Module();
-			module.Initialize();
 		}
 	}
 }

@@ -1,0 +1,14 @@
+﻿{
+  "people": [
+    {
+      "firstName": "D",
+      "secondName": "R",
+      "firstBirthDate": "1988/09/22",
+      "secondBirthDate": "1988/09/22"
+    },
+    {
+      "firstName": "D",
+      "firstBirthDate": "1988/09/22",
+    }
+  ]
+}
