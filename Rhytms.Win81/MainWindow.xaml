@@ -10,11 +10,13 @@
 		xmlns:controls="clr-namespace:Rhythms.Win.Controls"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		x:Class="Rhythms.Win.MainWindow"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 		mc:Ignorable="d"
 		Title="MainWindow"
 		Height="477"
 		Width="1019"
-		Background="#FFA7C3BF">
+		Background="#FFA7C3BF"
+		DataContext="{Binding Main, Source={StaticResource Locator}}">
 
 	<Window.Resources>
 		<ResourceDictionary>
@@ -36,7 +38,12 @@
 									  Double="{StaticResource doublePersonTemplate}" />
 		</ResourceDictionary>
 	</Window.Resources>
-	<Grid  DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+	<i:Interaction.Behaviors>
+		<b:SaveChartBehavior Trigger="{Binding SaveChartTrigger}" />
+	</i:Interaction.Behaviors>
+
+	<Grid>
 		<xctk:BusyIndicator IsBusy="{Binding IsBusy}">
 			<Grid>
 				<Grid.ColumnDefinitions>
@@ -60,6 +67,11 @@
 					<syncfusion:TabItemExt Header="Controls"
 										   IsNewTab="False">
 						<StackPanel Orientation="Vertical">
+							<Button Content="Export"
+									Height="50"
+									Command="{Binding Export}"
+									HorizontalAlignment="Right"
+									Width="286" />
 							<GroupBox Header="Dates"
 									  ToolTip="Select birthdates to be graphed"
 									  Margin="10">

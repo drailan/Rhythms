@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Text;
+using System.Windows;
 
 namespace Rhythms.Shared.Business
 {
@@ -21,7 +21,10 @@ namespace Rhythms.Shared.Business
 				Items.Add(item);
 			}
 
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			Application.Current.Dispatcher.BeginInvoke(
+				System.Windows.Threading.DispatcherPriority.Background, 
+				new Action(() => OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset)))
+			);
 		}
 	}
 }

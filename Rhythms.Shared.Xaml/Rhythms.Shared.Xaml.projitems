@@ -9,6 +9,7 @@
     <Import_RootNamespace>Rhythms.Shared.Xaml</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SaveChartBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ScrollIntoViewBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />

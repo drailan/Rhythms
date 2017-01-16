@@ -3,13 +3,15 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:b="clr-namespace:Rhythms.Shared.Xaml.Behaviors"
 			 xmlns:local="clr-namespace:Rhythms.Win.Controls"
 			 xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
 			 mc:Ignorable="d"
 			 d:DesignHeight="300"
 			 d:DesignWidth="300">
 	<Grid>
-		<syncfusion:SfChart Header="">
+		<syncfusion:SfChart Header=""
+							x:Name="MainChart">
 			<syncfusion:SfChart.PrimaryAxis>
 				<syncfusion:DateTimeAxis FontSize="10"
 										 ShowGridLines="True"
@@ -23,10 +25,6 @@
 										  Maximum="{Binding GraphYMax}"
 										  Minimum="{Binding GraphYMin}" />
 			</syncfusion:SfChart.SecondaryAxis>
-
-			<!--<syncfusion:SfChart.Legend>
-				<syncfusion:ChartLegend CheckBoxVisibility="Collapsed" />
-			</syncfusion:SfChart.Legend>-->
 
 			<syncfusion:FastLineSeries ItemsSource="{Binding Graph24}"
 									   Interior="{StaticResource Graph24Brush}"

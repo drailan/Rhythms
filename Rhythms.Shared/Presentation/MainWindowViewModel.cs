@@ -8,15 +8,14 @@ using Rhythms.Shared.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using Rhythms.Win.ViewModel;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace Rhythms.Shared.Presentation
 {
@@ -27,6 +26,7 @@ namespace Rhythms.Shared.Presentation
 		private DateTime _selectedDate;
 
 		private Guid _scrollIntoViewTrigger;
+		private Guid _saveChartTrigger;
 
 		private int _scale;
 		private int _auxScale = 360;
@@ -57,9 +57,9 @@ namespace Rhythms.Shared.Presentation
 		private RangeEnabledObservableCollection<Point> _graph28_2;
 		private RangeEnabledObservableCollection<Point> _graph33_2;
 		private RangeEnabledObservableCollection<Point> _graph40_2;
-		private RangeEnabledObservableCollection<Point> _graph56_2;
-		private RangeEnabledObservableCollection<Point> _graph92_2;
-		private RangeEnabledObservableCollection<Point> _graph276_2;
+		//private RangeEnabledObservableCollection<Point> _graph56_2;
+		//private RangeEnabledObservableCollection<Point> _graph92_2;
+		//private RangeEnabledObservableCollection<Point> _graph276_2;
 
 		private DoubleCollection _strokeCollection;
 
@@ -75,6 +75,12 @@ namespace Rhythms.Shared.Presentation
 		{
 			get { return _scrollIntoViewTrigger; }
 			set { Set(() => ScrollIntoViewTrigger, ref _scrollIntoViewTrigger, value); }
+		}
+
+		public Guid SaveChartTrigger
+		{
+			get { return _saveChartTrigger; }
+			set { Set(() => SaveChartTrigger, ref _saveChartTrigger, value); }
 		}
 
 		public bool IsBusy
@@ -457,5 +463,10 @@ namespace Rhythms.Shared.Presentation
 			SelectedDate = DateTime.Today;
 			ScrollIntoViewTrigger = Guid.NewGuid();
 		}
+
+		public ICommand Export => new RelayCommand(() =>
+		{
+			SaveChartTrigger = Guid.NewGuid();
+		});
 	}
 }
