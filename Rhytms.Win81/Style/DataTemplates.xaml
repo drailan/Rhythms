@@ -113,7 +113,8 @@
 								Grid.Column="0"
 								Height="50">
 						<TextBox Text="{Binding Item.FirstName}" />
-						<TextBox Text="{Binding Item.FirstBirthDate, Converter={StaticResource DateToLongPrettyStringConverter}}" />
+						<DatePicker Margin="10"
+									SelectedDate="{Binding Item.FirstBirthDate, Mode=TwoWay}" />
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal"

@@ -64,7 +64,7 @@ namespace Rhythms.Shared.Xaml.Behaviors
 
 			var itemWidth = 92;
 
-			if (listItem.SecondStates != null)
+			if (listItem?.SecondStates != null)
 			{
 				itemWidth = 170;
 			}

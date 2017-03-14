@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Rhythms.Shared;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Rhythms.Win
 {
@@ -34,6 +35,12 @@ namespace Rhythms.Win
 
 			var module = new Module();
 			module.Initialize();
+		}
+
+		protected override void OnClosed(EventArgs e)
+		{
+			ViewModel.ViewModelLocator.Cleanup();
+			base.OnClosed(e);
 		}
 	}
 }

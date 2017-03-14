@@ -9,10 +9,10 @@ namespace Rhythms.Shared.Extensions
 {
 	public static class IGraphExtensions
 	{
-		public static IEnumerable<GraphInnerState> GetGraphStates(this IEnumerable<IGraph> source, int totalDays, int day)
+		public static IEnumerable<GraphInnerState> GetGraphStates(this IEnumerable<IGraph> source, int totalDays, int day, DateTime selectedDate)
 		{
 			return source
-				.Select(s => s.GetCurrentState(totalDays, day));
+				.Select(s => s.GetCurrentState(totalDays, day, selectedDate));
 		}
 	}
 }

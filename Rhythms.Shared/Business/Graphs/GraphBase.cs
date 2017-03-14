@@ -1,11 +1,10 @@
 ﻿#if XAMARIN_ANDROID
 using AG = Android.Graphics;
 #endif
-using Rhythms.Shared.Entities;
-using Rhythms.Shared.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Rhythms.Shared.Entities;
+using Rhythms.Shared.Interfaces;
 
 namespace Rhythms.Shared.Business.Graphs
 {
@@ -51,7 +50,7 @@ namespace Rhythms.Shared.Business.Graphs
 			return state;
 		}
 
-		public void GenerateGraph(int totalDays, int scale)
+		public void GenerateGraph(int totalDays, int scale, DateTime selectedDate)
 		{
 			Points = new List<Point>();
 
@@ -72,7 +71,7 @@ namespace Rhythms.Shared.Business.Graphs
 					t = state / (Period / 4);
 				}
 
-				Points.Add(new Point(day, state, DateTime.Today - new TimeSpan(scale / 2 - day, 0, 0, 0)));
+				Points.Add(new Point(day, state, selectedDate - new TimeSpan(scale / 2 - day, 0, 0, 0)));
 			}
 		}
 
@@ -93,7 +92,7 @@ namespace Rhythms.Shared.Business.Graphs
 			return GetY(quarter, dayInPeriod, daysInQuarter);
 		}
 
-		public GraphInnerState GetCurrentState(int totalDays, int day)
+		public GraphInnerState GetCurrentState(int totalDays, int day, DateTime selectedDate)
 		{
 			var daysInQuarter = (float)Period / 4;
 			float remainder = ((float)(totalDays + day) / Period) % 1.0f;
@@ -111,13 +110,13 @@ namespace Rhythms.Shared.Business.Graphs
 			{
 				IsGrowing = quarter == 1 || quarter == 4,
 				State = t,
-				Date = DateTime.Now.AddDays(day)
+				Date = selectedDate.AddDays(day)
 			};
 
 			return gs;
 		}
 
-		public IEnumerable<GraphInnerState> GetCurrentStates(int totalDays)
+		public IEnumerable<GraphInnerState> GetCurrentStates(int totalDays, DateTime selectedDate)
 		{
 			var daysInQuarter = (float)Period / 4;
 			var states = new List<GraphInnerState>(3);
@@ -141,7 +140,7 @@ namespace Rhythms.Shared.Business.Graphs
 				{
 					IsGrowing = quarter == 1 || quarter == 4,
 					State = t,
-					Date = DateTime.Now.AddDays(day)
+					Date = selectedDate.AddDays(day)
 				};
 
 				states.Add(gs);

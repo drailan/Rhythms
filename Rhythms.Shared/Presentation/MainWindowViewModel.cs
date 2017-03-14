@@ -19,7 +19,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Rhythms.Shared.Presentation
 {
-	public class MainWindowViewModel : ViewModelBase, IDisposable
+	public partial class MainWindowViewModel : ViewModelBase, IDisposable
 	{
 		private DateTime _firstDate;
 		private DateTime _secondDate;
@@ -37,7 +37,7 @@ namespace Rhythms.Shared.Presentation
 		private int _graphYMax, _graphYMin;
 		private DateTime _graphXMax, _graphXMin;
 
-		private ReplaySubject<DateTime> _firstDateSubject, _secondDateSubject;
+		private ReplaySubject<DateTime> _firstDateSubject, _secondDateSubject, _selectedDateSubject;
 		private ReplaySubject<int> _scaleSubject;
 		private ReplaySubject<bool> _isMainSubject;
 
@@ -119,8 +119,6 @@ namespace Rhythms.Shared.Presentation
 			set { Set(() => GraphYMin, ref _graphYMin, value); }
 		}
 
-		#region graphs
-
 		public RangeEnabledObservableCollection<Point> Graph24
 		{
 			get { return _graph24; }
@@ -187,8 +185,6 @@ namespace Rhythms.Shared.Presentation
 			set { Set(() => Graph276, ref _graph276, value); }
 		}
 
-		#endregion
-
 		public RangeEnabledObservableCollection<Point> TodayLine
 		{
 			get { return _todayLine; }
@@ -227,6 +223,7 @@ namespace Rhythms.Shared.Presentation
 			set
 			{
 				Set(() => SelectedDate, ref _selectedDate, value);
+				_selectedDateSubject?.OnNext(value);
 			}
 		}
 
@@ -261,12 +258,13 @@ namespace Rhythms.Shared.Presentation
 			InitSubjects();
 
 			ObserveScale(_scaleSubject);
-			ObserveDates(_firstDateSubject, _secondDateSubject);
+			ObserveDates(_firstDateSubject, _secondDateSubject, _selectedDateSubject);
 			ObserveIsMain(_isMainSubject);
 
 			FirstDate = DateTime.Today;
 			SecondDate = DateTime.Today;
 			Scale = 30;
+			SelectedDate = DateTime.Today;
 
 			InitMainBounds();
 
@@ -284,15 +282,15 @@ namespace Rhythms.Shared.Presentation
 			GraphYMax = 11;
 			GraphYMin = -11;
 
-			GraphXMax = DateTime.Today + new TimeSpan(Scale / 2, 0, 0, 0);
-			GraphXMin = DateTime.Today - new TimeSpan(Scale / 2, 0, 0, 0);
+			GraphXMax = SelectedDate + new TimeSpan(Scale / 2, 0, 0, 0);
+			GraphXMin = SelectedDate - new TimeSpan(Scale / 2, 0, 0, 0);
 		}
 
 		private void GenerateTodayLine()
 		{
 			TodayLine = new RangeEnabledObservableCollection<Point>();
-			TodayLine.Add(new Point(0, GraphYMin, DateTime.Today));
-			TodayLine.Add(new Point(0, GraphYMax, DateTime.Today));
+			TodayLine.Add(new Point(0, GraphYMin, SelectedDate));
+			TodayLine.Add(new Point(0, GraphYMax, SelectedDate));
 		}
 
 		private void InitAuxBounds()
@@ -300,14 +298,16 @@ namespace Rhythms.Shared.Presentation
 			GraphYMax = 276 / 4 + 1;
 			GraphYMin = -276 / 4 - 1;
 
-			GraphXMax = DateTime.Today + new TimeSpan(_auxScale / 2, 0, 0, 0);
-			GraphXMin = DateTime.Today - new TimeSpan(_auxScale / 2, 0, 0, 0);
+			GraphXMax = SelectedDate + new TimeSpan(_auxScale / 2, 0, 0, 0);
+			GraphXMin = SelectedDate - new TimeSpan(_auxScale / 2, 0, 0, 0);
 		}
 
 		private void InitSubjects()
 		{
 			_firstDateSubject = new ReplaySubject<DateTime>(1).DisposeWith(_disposable);
 			_secondDateSubject = new ReplaySubject<DateTime>(1).DisposeWith(_disposable);
+			_selectedDateSubject = new ReplaySubject<DateTime>(1).DisposeWith(_disposable);
+
 			_scaleSubject = new ReplaySubject<int>(1).DisposeWith(_disposable);
 			_isMainSubject = new ReplaySubject<bool>(1).DisposeWith(_disposable);
 		}
@@ -317,10 +317,11 @@ namespace Rhythms.Shared.Presentation
 			scale.Skip(1).Do(_ => SpawnGraphs()).Subscribe().DisposeWith(_disposable);
 		}
 
-		public void ObserveDates(IObservable<DateTime> first, IObservable<DateTime> second)
+		public void ObserveDates(IObservable<DateTime> first, IObservable<DateTime> second, IObservable<DateTime> selected)
 		{
 			first.Skip(1).Do(_ => SpawnGraphs()).Subscribe().DisposeWith(_disposable);
 			second.Skip(1).Do(_ => SpawnGraphs()).Subscribe().DisposeWith(_disposable);
+			selected.Skip(1).Do(_ => SpawnGraphs()).Subscribe().DisposeWith(_disposable);
 		}
 
 		public void ObserveIsMain(IObservable<bool> main)
@@ -357,27 +358,27 @@ namespace Rhythms.Shared.Presentation
 
 		private IEnumerable<IGraph> InnerGenerateGraphs(DateTime birthday)
 		{
-			var totalDays = DateTime.Today - birthday;
+			var totalDays = SelectedDate - birthday;
 
 			var g24 = new Graph24();
-			g24.GenerateGraph(totalDays.Days, Scale);
+			g24.GenerateGraph(totalDays.Days, Scale, SelectedDate);
 
 			var g28 = new Graph28();
-			g28.GenerateGraph(totalDays.Days, Scale);
+			g28.GenerateGraph(totalDays.Days, Scale, SelectedDate);
 
 			var g33 = new Graph33();
-			g33.GenerateGraph(totalDays.Days, Scale);
+			g33.GenerateGraph(totalDays.Days, Scale, SelectedDate);
 
 			var g40 = new Graph40();
-			g40.GenerateGraph(totalDays.Days, Scale);
+			g40.GenerateGraph(totalDays.Days, Scale, SelectedDate);
 
 			return new List<IGraph>() { g24, g28, g33, g40 };
 		}
 
 		private async Task GenerateGraphs(DateTime birthday, DateTime secondbirthday)
 		{
-			var firstTotalDays = DateTime.Today - birthday;
-			var secondTotalDays = DateTime.Today - secondbirthday;
+			var firstTotalDays = SelectedDate - birthday;
+			var secondTotalDays = SelectedDate - secondbirthday;
 
 			if (IsMain)
 			{
@@ -389,13 +390,13 @@ namespace Rhythms.Shared.Presentation
 
 				Parallel.For(-Scale / 2, Scale / 2, (i) =>
 				{
-					var firstStates = graphs.GetGraphStates(firstTotalDays.Days, i);
+					var firstStates = graphs.GetGraphStates(firstTotalDays.Days, i, SelectedDate);
 
-					var date = DateTime.Now.AddDays(i);
+					var date = SelectedDate.AddDays(i);
 
 					if (secondbirthday != DateTime.MinValue && secondbirthday != DateTime.Today)
 					{
-						var secondStates = graphs.GetGraphStates(secondTotalDays.Days, i);
+						var secondStates = graphs.GetGraphStates(secondTotalDays.Days, i, SelectedDate);
 						statesRange[date] = new GraphState(date, firstStates, secondStates);
 					}
 					else
@@ -446,13 +447,13 @@ namespace Rhythms.Shared.Presentation
 				InitAuxBounds();
 
 				var g56 = new Graph56();
-				g56.GenerateGraph(firstTotalDays.Days, _auxScale);
+				g56.GenerateGraph(firstTotalDays.Days, _auxScale, SelectedDate);
 
 				var g92 = new Graph92();
-				g92.GenerateGraph(firstTotalDays.Days, _auxScale);
+				g92.GenerateGraph(firstTotalDays.Days, _auxScale, SelectedDate);
 
 				var g276 = new Graph276();
-				g276.GenerateGraph(firstTotalDays.Days, _auxScale);
+				g276.GenerateGraph(firstTotalDays.Days, _auxScale, SelectedDate);
 
 				Graph56 = new RangeEnabledObservableCollection<Point>(g56.Points);
 				Graph92 = new RangeEnabledObservableCollection<Point>(g92.Points);
@@ -460,7 +461,6 @@ namespace Rhythms.Shared.Presentation
 			}
 
 			GenerateTodayLine();
-			SelectedDate = DateTime.Today;
 			ScrollIntoViewTrigger = Guid.NewGuid();
 		}
 
@@ -468,5 +468,7 @@ namespace Rhythms.Shared.Presentation
 		{
 			SaveChartTrigger = Guid.NewGuid();
 		});
+
+		public ICommand Reset => new RelayCommand(() => SelectedDate = DateTime.Today);
 	}
 }

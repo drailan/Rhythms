@@ -14,12 +14,12 @@ namespace Rhythms.Shared.Interfaces
 
 		string GetName();
 #endif
-		void GenerateGraph(int totalDays, int scale);
+		void GenerateGraph(int totalDays, int scale, DateTime selectedDate);
 
-		IEnumerable<GraphInnerState> GetCurrentStates(int todalDays);
+		IEnumerable<GraphInnerState> GetCurrentStates(int todalDays, DateTime selectedDate);
 
 		List<Point> Points { get; set; }
 
-		GraphInnerState GetCurrentState(int totalDays, int day);
+		GraphInnerState GetCurrentState(int totalDays, int day, DateTime selectedDate);
 	}
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Rhythms.Shared.Interfaces;
@@ -10,9 +8,16 @@ namespace Rhythms.Shared.Data
 {
 	public class DataProvider : IDataProvider
 	{
+		private string DocumentsPath => Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+		public DataProvider()
+		{
+			Directory.CreateDirectory(Path.Combine(DocumentsPath, "Rhythms"));
+		}
+
 		public async Task<PeopleData> GetPeople()
 		{
-			var res = await Task.Factory.StartNew(Deserialize);
+			var res = await Task.Run(() => Deserialize());
 
 			return res;
 		}
@@ -21,16 +26,22 @@ namespace Rhythms.Shared.Data
 		{
 			var peopleData = new PeopleData() { People = data };
 
-			var json = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(peopleData));
+			var json = await Task.Run(() => JsonConvert.SerializeObject(peopleData));
 
-			File.WriteAllText("Data/Data.json", json);
+			File.WriteAllText(Path.Combine(DocumentsPath, "Rhythms", "Data.json"), json);
 		}
 
 		private PeopleData Deserialize()
 		{
-			var str = File.ReadAllText("Data/Data.json");
+			var path = Path.Combine(DocumentsPath, "Rhythms", "Data.json");
 
-			return JsonConvert.DeserializeObject<PeopleData>(str);
+			if (File.Exists(path))
+			{
+				var str = File.ReadAllText(Path.Combine(DocumentsPath, "Rhythms", "Data.json"));
+				return JsonConvert.DeserializeObject<PeopleData>(str);
+			}
+
+			return new PeopleData(new EntryData[0]);
 		}
 	}
 }

@@ -70,11 +70,22 @@
 							<Button Content="Export"
 									Height="50"
 									Command="{Binding Export}"
-									HorizontalAlignment="Right"
-									Width="286" />
+									Margin="15,0" />
+							<GroupBox Header="Target date"
+									  ToolTip="Select the target date"
+									  Margin="10"
+									  BorderBrush="#FF459FD4">
+								<StackPanel Orientation="Vertical">
+									<DatePicker Margin="10"
+												SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+									<Button Content="Reset"
+											Command="{Binding Reset}" />
+								</StackPanel>
+							</GroupBox>
 							<GroupBox Header="Dates"
 									  ToolTip="Select birthdates to be graphed"
-									  Margin="10">
+									  Margin="10"
+									  BorderBrush="#FF459FD4">
 								<StackPanel Orientation="Vertical">
 									<DatePicker Margin="10"
 												SelectedDate="{Binding FirstDate, Mode=TwoWay}" />
@@ -84,7 +95,8 @@
 							</GroupBox>
 							<GroupBox Header="Scale"
 									  ToolTip="Select graph scale"
-									  Margin="10">
+									  Margin="10"
+									  BorderBrush="#FF459FD4">
 								<StackPanel Orientation="Horizontal">
 									<RadioButton Content="30"
 												 GroupName="ScaleGroup"
@@ -105,7 +117,8 @@
 							</GroupBox>
 							<GroupBox Header="Graphs"
 									  ToolTip="Select type of graphs to display"
-									  Margin="10">
+									  Margin="10"
+									  BorderBrush="#FF459FD4">
 								<StackPanel Orientation="Horizontal">
 									<RadioButton Content="Main"
 												 GroupName="TypeGroup"
@@ -122,8 +135,28 @@
 					<syncfusion:TabItemExt Header="People"
 										   DataContext="{Binding People, Source={StaticResource Locator}}"
 										   IsNewTab="False">
-						<ListView ItemsSource="{Binding People}"
-								  ItemTemplateSelector="{StaticResource peopleTemplateSelector}" />
+						<StackPanel Orientation="Vertical">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Button Content="Add person"
+										Height="50"
+										Command="{Binding AddPerson}"
+										Grid.Column="0"
+										BorderThickness="1"
+										Margin="15,0" />
+								<Button Content="Add 2 people"
+										Height="50"
+										Command="{Binding AddTwoPerson}"
+										Grid.Column="1"
+										Margin="15,0" />
+							</Grid>
+							<ListView ItemsSource="{Binding People}"
+									  ItemTemplateSelector="{StaticResource peopleTemplateSelector}"
+									  Height="352" />
+						</StackPanel>
 					</syncfusion:TabItemExt>
 				</syncfusion:TabControlExt>
 			</Grid>

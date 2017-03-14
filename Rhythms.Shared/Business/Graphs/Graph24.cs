@@ -1,10 +1,6 @@
 ﻿#if XAMARIN_ANDROID
 using Android.Graphics;
 #endif
-using Rhythms.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Rhythms.Shared.Business.Graphs
 {

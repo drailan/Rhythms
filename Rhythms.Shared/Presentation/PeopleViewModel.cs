@@ -18,6 +18,8 @@ using GalaSoft.MvvmLight.Ioc;
 using Rhythms.Shared.Interfaces;
 using System.Threading.Tasks;
 using Rhythms.Shared.Business;
+using System.Collections.Specialized;
+using System.Reactive.Disposables;
 
 namespace Rhythms.Shared.Presentation
 {
@@ -27,6 +29,7 @@ namespace Rhythms.Shared.Presentation
 		private IDataProvider _dataProvider;
 
 		private Entry _item;
+		private CompositeDisposable _subscriptions;
 
 		public RangeEnabledObservableCollection<ParentedEntryItem> People
 		{
@@ -40,16 +43,36 @@ namespace Rhythms.Shared.Presentation
 
 			_dataProvider = SimpleIoc.Default.GetInstance<IDataProvider>();
 
+			_subscriptions = new CompositeDisposable();
+
 			Task.Run(async () =>
 			{
 				var peopleData = await _dataProvider.GetPeople();
 
-				var people = peopleData.People
+				var people = peopleData
+					.People
 					.Select(p => p.ToEntry())
-					.Select(e => this.CreateParented(e));
+					.Select(e => this.CreateParented(e))
+					.OrderBy(p => p.Item.FirstName);
 
 				People.InsertRange(people);
+			})
+			.ContinueWith((task) =>
+			{
+				SubscribeToCollectionChanged()
+					.DisposeWith(_subscriptions);
 			});
+		}
+
+		private IDisposable SubscribeToCollectionChanged()
+		{
+			return Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+				handler => People.CollectionChanged += handler,
+				handler => People.CollectionChanged -= handler
+			)
+			.Skip(1)
+			.Select(_ => Observable.StartAsync(SavePeople))
+			.Subscribe();
 		}
 
 		public ICommand View => new RelayCommand<Entry>(entry =>
@@ -66,12 +89,10 @@ namespace Rhythms.Shared.Presentation
 			}
 		});
 
-		public ICommand Delete => new RelayCommand<Entry>(async entry =>
+		public ICommand Delete => new RelayCommand<Entry>(entry =>
 		{
 			var person = People.Where(p => p.Item.Equals(entry)).FirstOrDefault();
 			People.Remove(person);
-
-			await SavePeople();
 		});
 
 		public ICommand Edit => new RelayCommand<Entry>(entry =>
@@ -109,11 +130,27 @@ namespace Rhythms.Shared.Presentation
 			entry.IsEditing = false;
 		});
 
+		public ICommand AddPerson => new RelayCommand(() =>
+		{
+			People.Add(this.CreateParented(new Entry("Name", DateTime.Today)));
+		});
+
+		public ICommand AddTwoPerson => new RelayCommand(() =>
+		{
+			People.Add(this.CreateParented(new Entry("First name", "Second name", DateTime.Today, DateTime.Today)));
+		});
+
 		private async Task SavePeople()
 		{
 			var peopleData = People.Select(p => p.Item.ToEntryData()).ToArray();
 
 			await _dataProvider.SavePeople(peopleData);
+		}
+
+		public override void Cleanup()
+		{
+			_subscriptions.Dispose();
+			base.Cleanup();
 		}
 	}
 }

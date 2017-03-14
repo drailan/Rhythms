@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Rhythms.Shared.Data
+﻿namespace Rhythms.Shared.Data
 {
 	public class PeopleData
 	{
+		public PeopleData()
+		{
+		}
+
+		public PeopleData(EntryData[] people)
+		{
+			People = people;
+		}
+
 		public EntryData[] People { get; set; }
 	}
 }

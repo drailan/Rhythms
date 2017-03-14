@@ -16,6 +16,11 @@ namespace Rhythms.Shared.Business
 		{
 			CheckReentrancy();
 
+			if (items == null)
+			{
+				return;
+			}
+
 			foreach (var item in items)
 			{
 				Items.Add(item);
